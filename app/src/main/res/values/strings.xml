@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Ride HMI</string>
+
+    <string name="status_live">LIVE</string>
+    <string name="status_no_data">NO DATA</string>
+    <string name="status_paused">PAUSED</string>
+    <string name="logo_description">Simple logo</string>
+
+    <string name="speed_unit">km/h</string>
+    <string name="value_unavailable">--</string>
+    <string name="range_unit">km</string>
+    <string name="range_label">Range</string>
+
+    <string name="scenario_connecting">Connecting</string>
+    <string name="scenario_parked">Parked</string>
+    <string name="scenario_ready">Ready</string>
+    <string name="scenario_riding">Riding</string>
+    <string name="scenario_accelerating">Accelerating</string>
+    <string name="scenario_motor_disabled">Motor disabled</string>
+    <string name="scenario_sensor_fault">Sensor fault</string>
+    <string name="scenario_signal_lost">Signal lost</string>
+
+    <string name="kill_switch_title">Kill Switch</string>
+    <string name="kill_switch_active">Active</string>
+    <string name="kill_switch_inactive">Inactive</string>
+
+    <string name="speed_exceeded_line1">Speed</string>
+    <string name="speed_exceeded_line2">Exceeded</string>
+
+    <string name="motor_on">ON</string>
+    <string name="motor_off">OFF</string>
+    <string name="motor_description">Motor status</string>
+
+    <string name="warning_invalid_speed">Invalid speed reading</string>
+    <string name="warning_missing_signal">Some signals unavailable</string>
+    <string name="warning_no_data">No vehicle data received</string>
+    <string name="warning_source_error">Vehicle data unavailable</string>
+
+    <string name="odometer_label">ODO</string>
+    <string name="trip_label">TRIP</string>
+    <string name="top_speed_label">TOP SPEED</string>
+    <string name="odometer_value">%.1f km</string>
+    <string name="trip_value">%.2f km</string>
+    <string name="top_speed_value">%d km/h</string>
+    <string name="previous_item">Previous</string>
+    <string name="next_item">Next</string>
+
+    <string name="battery_value">%d%%</string>
+
+    <string name="button_pause">Pause</string>
+    <string name="button_resume">Resume</string>
+    <string name="button_restart">Restart</string>
+</resources>
