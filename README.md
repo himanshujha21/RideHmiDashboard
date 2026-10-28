@@ -5,10 +5,10 @@ status, using data from a simulator, so no hardware is needed.
 
 Built with Kotlin, Jetpack Compose, Coroutines, StateFlow and a ViewModel.
 
-![Ready](docs/screenshots/ready.png)
-![Motor disabled](docs/screenshots/motor_disabled.png)
-
-More screenshots are in `docs/screenshots`.
+![Riding](docs/screenshots/riding.png)
+![Speed exceeded](docs/screenshots/overspeed.png)
+![Kill switch active](docs/screenshots/kill_switch.png)
+![No data](docs/screenshots/no_data.png)
 
 ## Build and run
 
