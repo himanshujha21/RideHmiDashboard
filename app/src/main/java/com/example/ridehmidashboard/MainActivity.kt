@@ -5,11 +5,13 @@ import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.ridehmidashboard.ui.DashboardScreen
 import com.example.ridehmidashboard.ui.DashboardViewModel
 import com.example.ridehmidashboard.ui.theme.RideHmiDashboardTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +21,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RideHmiDashboardTheme {
-                val dashboardViewModel: DashboardViewModel = viewModel(factory = DashboardViewModel.Factory)
+                val dashboardViewModel: DashboardViewModel = hiltViewModel()
                 DashboardScreen(viewModel = dashboardViewModel)
             }
         }

@@ -1,19 +1,13 @@
 package com.example.ridehmidashboard.ui
 
-import android.os.SystemClock
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.ridehmidashboard.data.SharedPreferencesTripCache
-import com.example.ridehmidashboard.data.SimulatedVehicleDataSource
 import com.example.ridehmidashboard.data.TimeProvider
 import com.example.ridehmidashboard.data.TripCache
 import com.example.ridehmidashboard.data.TripInfo
 import com.example.ridehmidashboard.data.VehicleDataSource
 import com.example.ridehmidashboard.data.VehicleState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,11 +16,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DashboardViewModel(
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
     private val dataSource: VehicleDataSource,
     private val tripCache: TripCache,
-    private val timeProvider: TimeProvider = TimeProvider { SystemClock.elapsedRealtime() }
+    private val timeProvider: TimeProvider
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DashboardUiState(trip = tripCache.load()))
@@ -183,15 +179,5 @@ class DashboardViewModel(
 
         // Assumes about 120 km on a full charge
         const val RANGE_KM_PER_PERCENT = 1.2
-
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = checkNotNull(this[APPLICATION_KEY])
-                DashboardViewModel(
-                    dataSource = SimulatedVehicleDataSource(),
-                    tripCache = SharedPreferencesTripCache(application)
-                )
-            }
-        }
     }
 }

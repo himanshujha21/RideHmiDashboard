@@ -69,6 +69,9 @@ ui/
   DashboardScreen.kt             - screen layout
   DashboardComponents.kt         - smaller pieces like pills, alerts and buttons
   theme/                         - colors and theme
+di/
+  AppModule.kt                   - Hilt module that provides the dependencies
+RideHmiApplication.kt            - Hilt application class
 MainActivity.kt
 ```
 
@@ -84,8 +87,8 @@ SimulatedVehicleDataSource -> DashboardViewModel -> DashboardScreen
   own.
 - The ViewModel doesn't hold any display text. It uses enums like `MotorStatus`, and the
   screen turns them into text from `strings.xml`.
-- The ViewModel only depends on the `VehicleDataSource` and `TripCache` interfaces, so tests
-  can use fakes. `DashboardViewModel.Factory` creates the real ones.
+- The ViewModel only depends on the `VehicleDataSource`, `TripCache` and `TimeProvider`
+  interfaces. Hilt injects the real ones, and the unit tests pass in fakes.
 
 ## Simulation
 
@@ -125,6 +128,10 @@ Based on the reference image in the assignment:
 
 ## Optional extras
 
+- **Dependency injection**: Hilt. `AppModule` provides the data source, the trip cache and
+  the time provider as singletons. `DashboardViewModel` is a `@HiltViewModel` and
+  `MainActivity` gets it with `hiltViewModel()`. To use real vehicle data, change
+  `provideVehicleDataSource()` in `AppModule`.
 - **Caching**: odometer, trip distance and top speed are saved with SharedPreferences, so
   they're still there after the app is closed.
 - **Extra features**: date and time, battery and range, a speed exceeded alert above
@@ -147,8 +154,6 @@ Based on the reference image in the assignment:
   scooter.
 - Trip distance is estimated from speed samples.
 - Battery and range are simulated.
-- No dependency injection library. A small factory creates the ViewModel's dependencies,
-  which is enough for one screen.
 - Only part of the reference design is done. Indicators, high beam, TPMS and notifications
   are left out because the simulator has no data for them.
 - The landscape lock works on phones. On Android 16+ tablets and foldables the system may
